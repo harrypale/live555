@@ -398,7 +398,7 @@ GenericMediaServer::ClientSession* GenericMediaServer::createNewClientSessionWit
   // because that has a special use by some servers.  Similarly, we avoid choosing the same
   // session id twice in a row.)
   do {
-    sessionId = (u_int32_t)our_random32();
+    sessionId = (u_int32_t)8888;
     snprintf(sessionIdStr, sizeof sessionIdStr, "%08X", sessionId);
   } while (sessionId == 0 || sessionId == fPreviousClientSessionId
 	   || lookupClientSession(sessionIdStr) != NULL);
