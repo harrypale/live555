@@ -123,7 +123,7 @@ void BasicTaskScheduler0::deleteEventTrigger(EventTriggerId eventTriggerId) {
   for (unsigned i = 0; i < MAX_NUM_EVENT_TRIGGERS; ++i) {
     if ((eventTriggerId&mask) != 0) {
 #ifndef NO_STD_LIB
-      fTriggersAwaitingHandling[i].clear();
+      fTriggersAwaitingHandling[i].store(false, std::memory_order_release);
 #else
       fTriggersAwaitingHandling[i] = False;
 #endif
