@@ -189,7 +189,7 @@ void BasicTaskScheduler::SingleStep(unsigned maxDelayTime) {
 
 #ifndef NO_STD_LIB
       if (fTriggersAwaitingHandling[i].load()) {
-	fTriggersAwaitingHandling[i].clear();
+	fTriggersAwaitingHandling[i].store(false, std::memory_order_release);
 #else
       if (fTriggersAwaitingHandling[i]) {
 	fTriggersAwaitingHandling[i] = False;
