@@ -50,7 +50,7 @@ BasicTaskScheduler0::BasicTaskScheduler0()
   fHandlers = new HandlerSet;
   for (unsigned i = 0; i < MAX_NUM_EVENT_TRIGGERS; ++i) {
 #ifndef NO_STD_LIB
-    fTriggersAwaitingHandling[i].clear();
+    fTriggersAwaitingHandling[i].store(false, std::memory_order_release);
 #else
     fTriggersAwaitingHandling[i] = False;
 #endif
