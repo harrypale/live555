@@ -145,7 +145,7 @@ void BasicTaskScheduler0::triggerEvent(EventTriggerId eventTriggerId, void* clie
     if ((eventTriggerId&mask) != 0) {
       fTriggeredEventClientDatas[i] = clientData;
 #ifndef NO_STD_LIB
-      (void)fTriggersAwaitingHandling[i].test_and_set();
+      bool wasPreviouslySet = fTriggersAwaitingHandling[i].exchange(true, std::memory_order_acq_rel);
 #else
       fTriggersAwaitingHandling[i] = True;
 #endif
